@@ -5,9 +5,9 @@ VisualStudioVersion = 15.0.28307.489
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NinjaWallet.API", "NinjaWallet.API\NinjaWallet.API.csproj", "{6482D4E8-D53D-4531-B46C-379D3A854DF6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NinjaWallet.Domain.Tests.Unit", "NinjaWallet.Domain.Tests.Unit\NinjaWallet.Domain.Tests.Unit.csproj", "{12004DE6-71F7-44D9-8CD4-311CC7B054D4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NinjaWallet.Domain.Tests.Unit", "NinjaWallet.Domain.Tests.Unit\NinjaWallet.Domain.Tests.Unit.csproj", "{12004DE6-71F7-44D9-8CD4-311CC7B054D4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NinjaWallet.Domain", "NinjaWallet.Domain\NinjaWallet.Domain.csproj", "{F3057000-A0F4-4D55-A7F0-2D21C936DF3D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NinjaWallet.Domain", "NinjaWallet.Domain\NinjaWallet.Domain.csproj", "{F3057000-A0F4-4D55-A7F0-2D21C936DF3D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

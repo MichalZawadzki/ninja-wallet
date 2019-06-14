@@ -1,21 +1,48 @@
-using NinjaWallet.Domain.Transaction;
+using NinjaWallet.Domain.Bill;
+using NinjaWallet.Domain.Transactions;
 using NinjaWallet.Domain.ValueObject;
 using NUnit.Framework;
 using System;
+using System.Linq;
 
 namespace Tests
 {
     public class BillTests
     {
-        [SetUp]
-        public void Setup()
+        [Test]
+        public void SetInitialAmount_WithAllInformation_SuccesfullSet()
         {
+            Bill bill = new Bill();
+            AmountState initialAmount = new AmountState(new Money(100, "PLN"), new DateTimeOffset(2010, 10, 10, 10, 10, 10, TimeSpan.Zero));
+
+            bill.SetInitialAmount(initialAmount);
+
+            Assert.AreEqual(initialAmount.Amount, bill.InitialAmount.Amount);
+            Assert.AreEqual(initialAmount.Date, bill.InitialAmount.Date);
         }
 
         [Test]
-        public void AddTransaction_Income_Added()
+        public void AddTransaction_AddIncomeTransactionToEmptyBill_IncomeAdded()
         {
-            
+            Bill bill = new Bill();
+            Transaction transaction = new Transaction(new Money(100, "PLN"), new DateTimeOffset(2010, 10, 10, 10, 10, 10, TimeSpan.Zero), "Cinema");
+
+            bill.AddTransaction(transaction);
+
+            Assert.AreEqual(1, bill.Transactions.Count);
+            Assert.AreEqual(transaction, bill.Transactions.FirstOrDefault());
+        }
+
+        [Test]
+        public void AddTransaction_AddNullTransaction_ExceptionThrown()
+        {
+            Bill bill = new Bill();
+            Transaction transaction = null;
+
+            void addTransactionDelegate() => bill.AddTransaction(transaction);
+
+            Exception ex = Assert.Throws<ArgumentException>(() => addTransactionDelegate());
+            Assert.That(ex.Message, Is.EqualTo("Transaction is null"));
         }
     }
 }

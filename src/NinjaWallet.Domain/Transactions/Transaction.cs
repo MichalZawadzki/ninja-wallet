@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace NinjaWallet.Domain.Transaction
+namespace NinjaWallet.Domain.Transactions
 {
     public class Transaction
     {
@@ -11,9 +11,16 @@ namespace NinjaWallet.Domain.Transaction
         public Money Amount { get; set; }
         public DateTimeOffset Date { get; set; }
         public string Text { get; set; }
-        
 
-        protected Transaction(Guid id, Money amount, DateTimeOffset date, string text)
+        public Transaction(Money amount, DateTimeOffset date, string text)
+        {
+            Id = Guid.NewGuid();
+            Amount = amount;
+            Date = date;
+            Text = text;
+        }
+
+        public Transaction(Guid id, Money amount, DateTimeOffset date, string text)
         {
             Id = id;
             Amount = amount;

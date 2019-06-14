@@ -26,7 +26,7 @@ namespace NinjaWallet.Domain.ValueObject
             {
                 throw new Exception("Amounts have different currencies");
             }
-                       
+
             return new Money(firstAmount.Amount + secondAmount.Amount, firstAmount.Currency);
         }
 
@@ -44,7 +44,7 @@ namespace NinjaWallet.Domain.ValueObject
 
             return new Money(firstAmount.Amount - secondAmount.Amount, firstAmount.Currency);
         }
-        
+
         public static Money operator -(Money amount)
         {
             if(amount == null)

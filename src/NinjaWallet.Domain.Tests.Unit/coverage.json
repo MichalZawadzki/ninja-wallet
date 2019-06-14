@@ -1,0 +1,363 @@
+{
+  "NinjaWallet.Domain.dll": {
+    "C:\\Users\\Michal\\Source\\Repos\\ninja-wallet\\src\\NinjaWallet.Domain\\ValueObject\\AmountState.cs": {
+      "NinjaWallet.Domain.ValueObject.AmountState": {
+        "NinjaWallet.Domain.ValueObject.Money NinjaWallet.Domain.ValueObject.AmountState::get_Amount()": {
+          "Lines": {
+            "9": 0
+          },
+          "Branches": []
+        },
+        "System.DateTimeOffset NinjaWallet.Domain.ValueObject.AmountState::get_Date()": {
+          "Lines": {
+            "10": 0
+          },
+          "Branches": []
+        },
+        "System.Void NinjaWallet.Domain.ValueObject.AmountState::.ctor(NinjaWallet.Domain.ValueObject.Money,System.DateTimeOffset)": {
+          "Lines": {
+            "12": 0,
+            "13": 0,
+            "14": 0,
+            "15": 0,
+            "16": 0
+          },
+          "Branches": []
+        }
+      }
+    },
+    "C:\\Users\\Michal\\Source\\Repos\\ninja-wallet\\src\\NinjaWallet.Domain\\ValueObject\\Money.cs": {
+      "NinjaWallet.Domain.ValueObject.Money": {
+        "System.Decimal NinjaWallet.Domain.ValueObject.Money::get_Amount()": {
+          "Lines": {
+            "9": 53
+          },
+          "Branches": []
+        },
+        "System.String NinjaWallet.Domain.ValueObject.Money::get_Currency()": {
+          "Lines": {
+            "10": 64
+          },
+          "Branches": []
+        },
+        "NinjaWallet.Domain.ValueObject.Money NinjaWallet.Domain.ValueObject.Money::op_Addition(NinjaWallet.Domain.ValueObject.Money,NinjaWallet.Domain.ValueObject.Money)": {
+          "Lines": {
+            "19": 5,
+            "20": 5,
+            "21": 1,
+            "22": 1,
+            "25": 4,
+            "26": 1,
+            "27": 1,
+            "30": 3,
+            "31": 3
+          },
+          "Branches": [
+            {
+              "Line": 20,
+              "Offset": 2,
+              "EndOffset": 4,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 5
+            },
+            {
+              "Line": 20,
+              "Offset": 2,
+              "EndOffset": 10,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            },
+            {
+              "Line": 20,
+              "Offset": 13,
+              "EndOffset": 15,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 1
+            },
+            {
+              "Line": 20,
+              "Offset": 13,
+              "EndOffset": 27,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 4
+            },
+            {
+              "Line": 25,
+              "Offset": 46,
+              "EndOffset": 48,
+              "Path": 0,
+              "Ordinal": 4,
+              "Hits": 1
+            },
+            {
+              "Line": 25,
+              "Offset": 46,
+              "EndOffset": 60,
+              "Path": 1,
+              "Ordinal": 5,
+              "Hits": 3
+            }
+          ]
+        },
+        "NinjaWallet.Domain.ValueObject.Money NinjaWallet.Domain.ValueObject.Money::op_Subtraction(NinjaWallet.Domain.ValueObject.Money,NinjaWallet.Domain.ValueObject.Money)": {
+          "Lines": {
+            "34": 6,
+            "35": 6,
+            "36": 1,
+            "37": 1,
+            "40": 5,
+            "41": 1,
+            "42": 1,
+            "45": 4,
+            "46": 4
+          },
+          "Branches": [
+            {
+              "Line": 35,
+              "Offset": 2,
+              "EndOffset": 4,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 6
+            },
+            {
+              "Line": 35,
+              "Offset": 2,
+              "EndOffset": 10,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            },
+            {
+              "Line": 35,
+              "Offset": 13,
+              "EndOffset": 15,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 1
+            },
+            {
+              "Line": 35,
+              "Offset": 13,
+              "EndOffset": 27,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 5
+            },
+            {
+              "Line": 40,
+              "Offset": 46,
+              "EndOffset": 48,
+              "Path": 0,
+              "Ordinal": 4,
+              "Hits": 1
+            },
+            {
+              "Line": 40,
+              "Offset": 46,
+              "EndOffset": 60,
+              "Path": 1,
+              "Ordinal": 5,
+              "Hits": 4
+            }
+          ]
+        },
+        "NinjaWallet.Domain.ValueObject.Money NinjaWallet.Domain.ValueObject.Money::op_UnaryNegation(NinjaWallet.Domain.ValueObject.Money)": {
+          "Lines": {
+            "49": 4,
+            "50": 4,
+            "51": 1,
+            "52": 1,
+            "55": 3,
+            "56": 3
+          },
+          "Branches": [
+            {
+              "Line": 50,
+              "Offset": 7,
+              "EndOffset": 9,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 1
+            },
+            {
+              "Line": 50,
+              "Offset": 7,
+              "EndOffset": 21,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 3
+            }
+          ]
+        },
+        "NinjaWallet.Domain.ValueObject.Money NinjaWallet.Domain.ValueObject.Money::op_Multiply(NinjaWallet.Domain.ValueObject.Money,System.Decimal)": {
+          "Lines": {
+            "59": 5,
+            "60": 5,
+            "61": 1,
+            "62": 1,
+            "65": 4,
+            "66": 4
+          },
+          "Branches": [
+            {
+              "Line": 60,
+              "Offset": 7,
+              "EndOffset": 9,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 1
+            },
+            {
+              "Line": 60,
+              "Offset": 7,
+              "EndOffset": 21,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 4
+            }
+          ]
+        },
+        "System.Void NinjaWallet.Domain.ValueObject.Money::.ctor(System.Decimal,System.String)": {
+          "Lines": {
+            "12": 59,
+            "13": 59,
+            "14": 59,
+            "15": 59,
+            "16": 59
+          },
+          "Branches": [
+            {
+              "Line": 15,
+              "Offset": 18,
+              "EndOffset": 20,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 1
+            },
+            {
+              "Line": 15,
+              "Offset": 18,
+              "EndOffset": 26,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 59
+            }
+          ]
+        }
+      }
+    },
+    "C:\\Users\\Michal\\Source\\Repos\\ninja-wallet\\src\\NinjaWallet.Domain\\Transactions\\Transaction.cs": {
+      "NinjaWallet.Domain.Transactions.Transaction": {
+        "System.Guid NinjaWallet.Domain.Transactions.Transaction::get_Id()": {
+          "Lines": {
+            "10": 0
+          },
+          "Branches": []
+        },
+        "NinjaWallet.Domain.ValueObject.Money NinjaWallet.Domain.Transactions.Transaction::get_Amount()": {
+          "Lines": {
+            "11": 0
+          },
+          "Branches": []
+        },
+        "System.DateTimeOffset NinjaWallet.Domain.Transactions.Transaction::get_Date()": {
+          "Lines": {
+            "12": 0
+          },
+          "Branches": []
+        },
+        "System.String NinjaWallet.Domain.Transactions.Transaction::get_Text()": {
+          "Lines": {
+            "13": 0
+          },
+          "Branches": []
+        },
+        "System.Void NinjaWallet.Domain.Transactions.Transaction::.ctor(System.Guid,NinjaWallet.Domain.ValueObject.Money,System.DateTimeOffset,System.String)": {
+          "Lines": {
+            "15": 0,
+            "16": 0,
+            "17": 0,
+            "18": 0,
+            "19": 0,
+            "20": 0,
+            "21": 0
+          },
+          "Branches": []
+        }
+      }
+    },
+    "C:\\Users\\Michal\\Source\\Repos\\ninja-wallet\\src\\NinjaWallet.Domain\\Bill\\Bill.cs": {
+      "NinjaWallet.Domain.Bill.Bill": {
+        "System.Guid NinjaWallet.Domain.Bill.Bill::get_Id()": {
+          "Lines": {
+            "11": 0
+          },
+          "Branches": []
+        },
+        "System.String NinjaWallet.Domain.Bill.Bill::get_Name()": {
+          "Lines": {
+            "12": 0
+          },
+          "Branches": []
+        },
+        "System.String NinjaWallet.Domain.Bill.Bill::get_Description()": {
+          "Lines": {
+            "13": 0
+          },
+          "Branches": []
+        },
+        "NinjaWallet.Domain.Bill.BillType NinjaWallet.Domain.Bill.Bill::get_Type()": {
+          "Lines": {
+            "14": 0
+          },
+          "Branches": []
+        },
+        "NinjaWallet.Domain.ValueObject.AmountState NinjaWallet.Domain.Bill.Bill::get_InitialAmount()": {
+          "Lines": {
+            "15": 0
+          },
+          "Branches": []
+        },
+        "System.Collections.Generic.ICollection`1<NinjaWallet.Domain.Transactions.Transaction> NinjaWallet.Domain.Bill.Bill::get_Transactions()": {
+          "Lines": {
+            "16": 0
+          },
+          "Branches": []
+        },
+        "NinjaWallet.Domain.ValueObject.Money NinjaWallet.Domain.Bill.Bill::GetCurrentAmount()": {
+          "Lines": {
+            "19": 0,
+            "20": 0
+          },
+          "Branches": []
+        },
+        "System.Void NinjaWallet.Domain.Bill.Bill::AddTransaction(NinjaWallet.Domain.Transactions.Transaction)": {
+          "Lines": {
+            "24": 0,
+            "25": 0
+          },
+          "Branches": []
+        },
+        "System.Void NinjaWallet.Domain.Bill.Bill::RemoveTransactionFromBill(System.Guid)": {
+          "Lines": {
+            "29": 0,
+            "30": 0
+          },
+          "Branches": []
+        },
+        "System.Collections.Generic.ICollection`1<NinjaWallet.Domain.Transactions.Transaction> NinjaWallet.Domain.Bill.Bill::GetAllTransactions()": {
+          "Lines": {
+            "34": 0,
+            "35": 0
+          },
+          "Branches": []
+        }
+      }
+    }
+  }
+}

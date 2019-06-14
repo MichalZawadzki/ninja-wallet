@@ -24,7 +24,7 @@ namespace Tests.MoneyTests
             Assert.AreEqual(expectedAmount.Amount, resultAmount.Amount);
             Assert.AreEqual(expectedAmount.Currency, resultAmount.Currency);
         }
-        
+
         [Test]
         public void Reverse_MoneyIsNull_FailedCalculation()
         {

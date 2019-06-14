@@ -3,6 +3,7 @@ using NinjaWallet.Domain.Transactions;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Linq;
 
 namespace NinjaWallet.Domain.Bill
 {
@@ -30,14 +31,19 @@ namespace NinjaWallet.Domain.Bill
             throw new NotImplementedException();
         }
 
-        public void AddTransaction(Transaction transaction)
+        public void AddTransaction(Transaction newTransaction)
         {
-            if(transaction == null)
+            if(newTransaction == null)
             {
                 throw new ArgumentException("Transaction is null");
             }
 
-            Transactions.Add(transaction);
+            if(Transactions.Any(transaction => transaction.Id == newTransaction.Id))
+            {
+                throw new Exception("Transaction is already added to the bill");
+            }
+
+            Transactions.Add(newTransaction);
         }
 
         public void RemoveTransactionFromBill(Guid transactionId)

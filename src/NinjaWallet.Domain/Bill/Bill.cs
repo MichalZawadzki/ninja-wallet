@@ -13,17 +13,32 @@ namespace NinjaWallet.Domain.Bill
         public string Name { get; set; }
         public string Description { get; set; }
         public BillType Type { get; set; }
+        public string Currency { get; set; }
         public AmountState InitialAmount { get; private set; }
         public ICollection<Transaction> Transactions { get; }
 
         public Bill()
         {
+            Currency = "PLN";
+            Transactions = new List<Transaction>();
+        }
+
+        public Bill(string currecy)
+        {
+            Currency = currecy;
             Transactions = new List<Transaction>();
         }
 
         public void SetInitialAmount(AmountState initialAmount)
         {
-            InitialAmount = initialAmount;
+            if(initialAmount == null || initialAmount.Amount.Currency == Currency)
+            {
+                InitialAmount = initialAmount;
+            }
+            else
+            {
+                throw new Exception("Initial amount is in different currency");
+            }
         }
 
         public Money GetCurrentAmount()
@@ -43,6 +58,11 @@ namespace NinjaWallet.Domain.Bill
                 throw new Exception("Transaction is already added to the bill");
             }
 
+            if (newTransaction.Amount.Currency != Currency)
+            {
+                throw new Exception("Transaction has different currency than bill");
+            }
+
             Transactions.Add(newTransaction);
         }
 
@@ -59,7 +79,7 @@ namespace NinjaWallet.Domain.Bill
 
         public ICollection<Transaction> GetAllTransactions()
         {
-            throw new NotImplementedException();
+            return Transactions;
         }
     }
 }

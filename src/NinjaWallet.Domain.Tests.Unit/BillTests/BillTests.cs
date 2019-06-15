@@ -3,9 +3,11 @@ using NinjaWallet.Domain.Transactions;
 using NinjaWallet.Domain.ValueObject;
 using NUnit.Framework;
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 
-namespace Tests
+namespace Tests.BillTests
 {
     public class BillTests
     {
@@ -13,7 +15,7 @@ namespace Tests
         public void SetInitialAmount_WithAllInformation_SuccesfullSet()
         {
             // Arrange
-            Bill bill = new Bill();
+            Bill bill = new Bill("PLN");
             AmountState initialAmount = new AmountState(new Money(100, "PLN"), new DateTimeOffset(2010, 10, 10, 10, 10, 10, TimeSpan.Zero));
 
             // Act
@@ -22,6 +24,36 @@ namespace Tests
             // Assert
             Assert.AreEqual(initialAmount.Amount, bill.InitialAmount.Amount);
             Assert.AreEqual(initialAmount.Date, bill.InitialAmount.Date);
+        }
+
+        [Test]
+        public void SetInitialAmount_WithDifferentCurrency_ExceptionThrown()
+        {
+            // Arrange
+            Bill bill = new Bill("PLN");
+            AmountState initialAmount = new AmountState(new Money(100, "USD"), new DateTimeOffset(2010, 10, 10, 10, 10, 10, TimeSpan.Zero));
+
+            // Act
+            void setInitialAmount() => bill.SetInitialAmount(initialAmount);
+
+            // Assert
+            Exception ex = Assert.Throws<Exception>(() => setInitialAmount());
+            Assert.AreEqual(ex.Message, "Initial amount is in different currency");
+        }
+
+        [Test]
+        public void SetInitialAmount_SetNull_InitialAmountCleared()
+        {
+            // Arrange
+            Bill bill = new Bill("PLN");
+            AmountState initialAmount = new AmountState(new Money(100, "PLN"), new DateTimeOffset(2010, 10, 10, 10, 10, 10, TimeSpan.Zero));
+            bill.SetInitialAmount(initialAmount);
+
+            // Act
+            bill.SetInitialAmount(null);
+
+            // Assert
+            Assert.IsNull(bill.InitialAmount);
         }
 
         [Test]
@@ -37,6 +69,21 @@ namespace Tests
             // Assert
             Assert.AreEqual(1, bill.Transactions.Count);
             Assert.AreEqual(transaction, bill.Transactions.FirstOrDefault());
+        }
+
+        [Test]
+        public void AddTransaction_AddIncomeTransactionWithDifferentCurrency_ExceptionThrown()
+        {
+            // Arrange
+            Bill bill = new Bill("PLN");
+            Transaction transaction = new Transaction(new Money(100, "USD"), new DateTimeOffset(2010, 10, 10, 10, 10, 10, TimeSpan.Zero), "Cinema");
+
+            // Act
+            void addTransaction() => bill.AddTransaction(transaction);
+
+            // Assert
+            Exception ex = Assert.Throws<Exception>(() => addTransaction());
+            Assert.AreEqual(ex.Message, "Transaction has different currency than bill");
         }
 
         [Test]
@@ -93,7 +140,7 @@ namespace Tests
         public void RemoveTransaction_ExistinTransaction_SuccesfullRemoved()
         {
             // Arrange
-            Bill bill = new Bill();
+            Bill bill = new Bill("PLN");
             Transaction transaction = new Transaction(new Money(100, "PLN"), new DateTimeOffset(2010, 10, 10, 10, 10, 10, TimeSpan.Zero), "Cinema");
             bill.AddTransaction(transaction);
 
@@ -116,6 +163,65 @@ namespace Tests
             // Assert
             Exception ex = Assert.Throws<Exception>(() => removeTransactionDelegate());
             Assert.That(ex.Message, Is.EqualTo("Transaction not found"));
+        }
+
+        [Test]
+        public void GetAllTransactions_EmptyBill_EmpltyListReturned()
+        {
+            // Arrange
+            Bill bill = new Bill();
+
+            // Act
+            ICollection<Transaction> result = bill.GetAllTransactions();
+
+            // Assert
+            Assert.AreEqual(0, result.Count);
+        }
+
+        [Test]
+        public void GetAllTransactions_BillWith2Transactions_ListReturned()
+        {
+            // Arrange
+            Bill bill = new Bill();
+            Transaction firstTransaction = new Transaction(new Money(100, "PLN"), new DateTimeOffset(2010, 10, 10, 10, 10, 10, TimeSpan.Zero), "Cinema");
+            Transaction secondTransaction = new Transaction(new Money(200, "PLN"), new DateTimeOffset(2010, 10, 11, 10, 10, 10, TimeSpan.Zero), "Dinner");
+            bill.AddTransaction(firstTransaction);
+            bill.AddTransaction(secondTransaction);
+
+            // Act
+            ICollection<Transaction> result = bill.GetAllTransactions();
+
+            // Assert
+            Assert.AreEqual(2, result.Count);
+            Assert.AreEqual(firstTransaction, result.First());
+            Assert.AreEqual(secondTransaction, result.Last());
+        }
+
+        [TestCase(10, "PLN", 20, "PLN", 30, "PLN")]
+        [TestCase(0, "PLN", 0, "PLN", 0, "PLN")]
+        [TestCase(-10, "PLN", 0, "PLN", -10, "PLN")]
+        public void GetCurrentAmount_BillWith2TransactionsNoInitialState_AmountReturned(
+            decimal firstValue,
+            string firstCurrency,
+            decimal secondValue,
+            string secondCurrency,
+            decimal resultValue,
+            string resultCurrency)
+        {
+            // Arrange
+            Bill bill = new Bill();
+            Transaction firstTransaction = new Transaction(new Money(100, "PLN"), new DateTimeOffset(2010, 10, 10, 10, 10, 10, TimeSpan.Zero), "Cinema");
+            Transaction secondTransaction = new Transaction(new Money(200, "PLN"), new DateTimeOffset(2010, 10, 11, 10, 10, 10, TimeSpan.Zero), "Dinner");
+            bill.AddTransaction(firstTransaction);
+            bill.AddTransaction(secondTransaction);
+
+            // Act
+            ICollection<Transaction> result = bill.GetAllTransactions();
+
+            // Assert
+            Assert.AreEqual(2, result.Count);
+            Assert.AreEqual(firstTransaction, result.First());
+            Assert.AreEqual(secondTransaction, result.Last());
         }
     }
 }

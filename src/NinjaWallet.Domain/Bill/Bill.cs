@@ -14,7 +14,7 @@ namespace NinjaWallet.Domain.Bill
         public string Description { get; set; }
         public BillType Type { get; set; }
         public AmountState InitialAmount { get; private set; }
-        public ICollection<Transaction> Transactions { get; private set; }
+        public ICollection<Transaction> Transactions { get; }
 
         public Bill()
         {
@@ -48,7 +48,13 @@ namespace NinjaWallet.Domain.Bill
 
         public void RemoveTransactionFromBill(Guid transactionId)
         {
-            throw new NotImplementedException();
+            Transaction transactionToRemove = Transactions.FirstOrDefault(transaction => transaction.Id == transactionId);
+            if(transactionToRemove == null)
+            {
+                throw new Exception("Transaction not found");
+            }
+
+            Transactions.Remove(transactionToRemove);
         }
 
         public ICollection<Transaction> GetAllTransactions()

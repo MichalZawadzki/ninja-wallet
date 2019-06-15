@@ -4,6 +4,5 @@ namespace Tests
 {
     public class TransactionTests
     {
-        
     }
 }

@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Linq;
 
-namespace NinjaWallet.Domain.Bill
+namespace NinjaWallet.Domain.Bills
 {
     public class Bill
     {

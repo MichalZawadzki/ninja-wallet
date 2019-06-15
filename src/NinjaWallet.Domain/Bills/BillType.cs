@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace NinjaWallet.Domain.Bill
+namespace NinjaWallet.Domain.Bills
 {
     public enum BillType
     {

@@ -4,7 +4,7 @@ using NUnit.Framework.Constraints;
 using System;
 using System.Collections.Generic;
 
-namespace Tests.MoneyTests
+namespace NinjaWallet.Domain.Tests.Unit.MoneyTests
 {
     public class Reverse_Money
     {

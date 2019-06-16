@@ -43,7 +43,14 @@ namespace NinjaWallet.Domain.Bills
 
         public Money GetCurrentAmount()
         {
-            throw new NotImplementedException();
+            Money currentAmount = InitialAmount?.Amount ?? new Money(decimal.Zero, "PLN");
+
+            foreach (Transaction transaction in Transactions)
+            {
+                currentAmount = currentAmount + transaction.Amount;
+            }
+
+            return currentAmount;
         }
 
         public void AddTransaction(Transaction newTransaction)

@@ -11,31 +11,45 @@ namespace NinjaWallet.Domain.Tests.Unit.BillTests
 {
     public class GetCurrentAmount_Bill
     {
-        [TestCase(10, "PLN", 20, "PLN", 30, "PLN")]
-        [TestCase(0, "PLN", 0, "PLN", 0, "PLN")]
-        [TestCase(-10, "PLN", 0, "PLN", -10, "PLN")]
-        public void GetCurrentAmount_BillWith2TransactionsNoInitialState_AmountReturned(
-            decimal firstValue,
-            string firstCurrency,
-            decimal secondValue,
-            string secondCurrency,
-            decimal resultValue,
-            string resultCurrency)
+        [TestCase(new int[] { 10, -10, 20 }, 20)]
+        [TestCase(new int[] { }, 0)]
+        [TestCase(new int[] { -3450, -10, 20 }, -3440)]
+        public void GetCurrentAmount_BillWithTransactionsNoInitialState_AmountReturned(int[] values, decimal expectedValue)
         {
             // Arrange
-            Bill bill = new Bill();
-            Transaction firstTransaction = new Transaction(new Money(100, "PLN"), new DateTimeOffset(2010, 10, 10, 10, 10, 10, TimeSpan.Zero), "Cinema");
-            Transaction secondTransaction = new Transaction(new Money(200, "PLN"), new DateTimeOffset(2010, 10, 11, 10, 10, 10, TimeSpan.Zero), "Dinner");
-            bill.AddTransaction(firstTransaction);
-            bill.AddTransaction(secondTransaction);
-
+            Bill bill = new Bill("PLN");
+            foreach (var value in values)
+            {
+                Transaction transaction = new Transaction(new Money((decimal)value, "PLN"), new DateTimeOffset(2010, 10, 10, 10, 10, 10, TimeSpan.Zero), "Cinema");
+                bill.AddTransaction(transaction);
+            }
+            
             // Act
-            ICollection<Transaction> result = bill.GetAllTransactions();
+            Money result = bill.GetCurrentAmount();
 
             // Assert
-            Assert.AreEqual(2, result.Count);
-            Assert.AreEqual(firstTransaction, result.First());
-            Assert.AreEqual(secondTransaction, result.Last());
+            Assert.AreEqual(expectedValue, result.Amount);
+        }
+
+        [TestCase(new int[] { 10, -10, 20 }, 60, 80)]
+        [TestCase(new int[] { }, 0, 0)]
+        [TestCase(new int[] { -3450, -10, 20 }, -500, -3940)]
+        public void GetCurrentAmount_BillWithTransactionsAndInitialState_AmountReturned(int[] values, decimal initialValue, decimal expectedValue)
+        {
+            // Arrange
+            Bill bill = new Bill("PLN");
+            bill.SetInitialAmount(new AmountState(new Money(initialValue), new DateTimeOffset(2010, 10, 10, 10, 10, 10, TimeSpan.Zero)));
+            foreach (var value in values)
+            {
+                Transaction transaction = new Transaction(new Money((decimal)value, "PLN"), new DateTimeOffset(2010, 10, 10, 10, 10, 10, TimeSpan.Zero), "Cinema");
+                bill.AddTransaction(transaction);
+            }
+
+            // Act
+            Money result = bill.GetCurrentAmount();
+
+            // Assert
+            Assert.AreEqual(expectedValue, result.Amount);
         }
     }
 }

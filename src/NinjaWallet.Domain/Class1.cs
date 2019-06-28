@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace NinjaWallet.Domain
+﻿namespace NinjaWallet.Domain
 {
     public class Class1
     {

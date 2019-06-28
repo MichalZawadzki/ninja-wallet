@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace NinjaWallet.Domain.Bills
+﻿namespace NinjaWallet.Domain.Bills
 {
     public enum BillType
     {

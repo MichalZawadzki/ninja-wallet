@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace NinjaWallet.Domain.ValueObject
 {
@@ -15,14 +13,14 @@ namespace NinjaWallet.Domain.ValueObject
             Currency = currency ?? "PLN";
         }
 
-        public static Money operator+(Money firstAmount, Money secondAmount)
+        public static Money operator +(Money firstAmount, Money secondAmount)
         {
             if (firstAmount == null || secondAmount == null)
             {
                 throw new ArgumentException("At least one amount is null");
             }
 
-            if(firstAmount.Currency != secondAmount.Currency)
+            if (firstAmount.Currency != secondAmount.Currency)
             {
                 throw new Exception("Amounts have different currencies");
             }
@@ -47,7 +45,7 @@ namespace NinjaWallet.Domain.ValueObject
 
         public static Money operator -(Money amount)
         {
-            if(amount == null)
+            if (amount == null)
             {
                 throw new ArgumentException("Amount is null");
             }

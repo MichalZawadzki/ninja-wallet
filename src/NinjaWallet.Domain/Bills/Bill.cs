@@ -1,8 +1,7 @@
-﻿using NinjaWallet.Domain.ValueObject;
-using NinjaWallet.Domain.Transactions;
+﻿using NinjaWallet.Domain.Transactions;
+using NinjaWallet.Domain.ValueObject;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Linq;
 
 namespace NinjaWallet.Domain.Bills
@@ -31,7 +30,7 @@ namespace NinjaWallet.Domain.Bills
 
         public void SetInitialAmount(AmountState initialAmount)
         {
-            if(initialAmount == null || initialAmount.Amount.Currency == Currency)
+            if (initialAmount == null || initialAmount.Amount.Currency == Currency)
             {
                 InitialAmount = initialAmount;
             }
@@ -55,12 +54,12 @@ namespace NinjaWallet.Domain.Bills
 
         public void AddTransaction(Transaction newTransaction)
         {
-            if(newTransaction == null)
+            if (newTransaction == null)
             {
                 throw new ArgumentException("Transaction is null");
             }
 
-            if(Transactions.Any(transaction => transaction.Id == newTransaction.Id))
+            if (Transactions.Any(transaction => transaction.Id == newTransaction.Id))
             {
                 throw new Exception("Transaction is already added to the bill");
             }
@@ -76,7 +75,7 @@ namespace NinjaWallet.Domain.Bills
         public void RemoveTransactionFromBill(Guid transactionId)
         {
             Transaction transactionToRemove = Transactions.FirstOrDefault(transaction => transaction.Id == transactionId);
-            if(transactionToRemove == null)
+            if (transactionToRemove == null)
             {
                 throw new Exception("Transaction not found");
             }

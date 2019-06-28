@@ -1,7 +1,5 @@
 ﻿using NinjaWallet.Domain.ValueObject;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace NinjaWallet.Domain.Transactions
 {
